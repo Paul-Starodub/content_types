@@ -4,7 +4,7 @@ from tracking.models import Post
 
 
 class DynamicFieldsModelSerializerMixin(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: tuple, **kwargs: dict) -> None:
         fields = kwargs.pop("fields", None)
         list_fields = fields.split(",")
         super(DynamicFieldsModelSerializerMixin, self).__init__(

@@ -27,9 +27,7 @@ class DynamicFieldsModelViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-    def get_serializer(self, *args, **kwargs):
-        # Pass the request's query parameters to the serializer
+    def get_serializer(self, *args: tuple, **kwargs: dict) -> PostSerializer:
         fields = self.request.query_params.get("fields", None)
-        print(fields)
         kwargs["context"] = self.get_serializer_context()
         return self.serializer_class(fields=fields, *args, **kwargs)
